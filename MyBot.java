@@ -5,6 +5,7 @@ import pirates.*;
  * This is an example for a bot.
  */
 public class MyBot implements PirateBot {
+	//Locations Object that help to big some of the Challanges
     Location gal = new Location(4,4);
     Location gal1 = new Location(4,3);
     Location att = new Location(10,12);
@@ -24,6 +25,7 @@ public class MyBot implements PirateBot {
      * @param game - the current game state.
      */
     @Override
+	//What to do on turn, Most of the options base on specific bots
     public void doTurn(PirateGame game) 
     {
         if(game.getEnemy().botName.equals("12001")) //
@@ -551,6 +553,7 @@ public class MyBot implements PirateBot {
             handleDecoy(game);
 
         }
+	    //the Code that we use in the Finals
         else if(game.getAllIslands().size() == 4 && game.getMyCities().size() == 1 && game.getEnemyCities().size() == 1 && game.getNeutralCities().size() == 1)
         {
             
@@ -836,7 +839,8 @@ public class MyBot implements PirateBot {
              handleDronesFinal(game);
              handleDecoy(game);
         }
-        else if(game.getAllIslands().size() == 4 && game.getMyCities().size() ==1 && game.getEnemyCities().size() == 1 && game.getNeutralCities().size() == 1)
+        //The code i use in the Challanges
+	else if(game.getAllIslands().size() == 4 && game.getMyCities().size() ==1 && game.getEnemyCities().size() == 1 && game.getNeutralCities().size() == 1)
         {
             
             if(game.getAllIslands().get(2).owner != game.getMyself())
@@ -1289,6 +1293,8 @@ public class MyBot implements PirateBot {
      *
      * @param game - the current game state
      */
+	
+    //get the Closest Paintball to specific Pirate
     private Paintball closetPain(PirateGame game, Pirate p)
     {
         int x =999999;
@@ -1305,6 +1311,7 @@ public class MyBot implements PirateBot {
         
     }
     
+    //Make the Pirate go to the Paintball
     private boolean tryPaintball(Pirate pirate, PirateGame game) {
     // Check if the pirate already has paintball and that paintballs are there
     if (!pirate.hasPaintball && game.getAvailablePaintballs().size() > 0) {
@@ -1320,7 +1327,7 @@ public class MyBot implements PirateBot {
     return false;
     }
 
-    
+    //Handle Decoy, Make the Decoy more to the cloest Enemy Alive
     private void handleDecoy(PirateGame game) 
     {
         Decoy decoy = game.getMyself().decoy;
@@ -1344,7 +1351,7 @@ public class MyBot implements PirateBot {
             
         }
     }
-    
+    //Make the Decoy go to specific location, helps to bit challanges
     private void handleDecoyM(PirateGame game) 
     {
         Decoy decoy = game.getMyself().decoy;
@@ -1359,7 +1366,7 @@ public class MyBot implements PirateBot {
             
         }
     }
-    
+    //Make the Decoy go to specific location, helps to bit challanges
     private void handleDecoyArm(PirateGame game) 
     {
         Decoy decoy = game.getMyself().decoy;
@@ -1375,7 +1382,7 @@ public class MyBot implements PirateBot {
         }
     }
     
-    
+    //get the Cloest Pirate to the Drone
     private Pirate getCLosestPirate(PirateGame game, Decoy dec)
     {
         int x= 99999;
@@ -1390,7 +1397,7 @@ public class MyBot implements PirateBot {
         }
         return save;
     }
-    
+    //Try to summon Decoy
     private boolean tryDecoy(PirateGame game,Pirate pirate) {
     // Check if the player can decoy a pirate
     if (pirate.owner.turnsToDecoyReload == 0) {
@@ -1406,6 +1413,7 @@ public class MyBot implements PirateBot {
     return false;
     }
     
+    //get the Closet Enemy Drone to there city
     private Drone getColestToCity(PirateGame game)
     {
         int x = 9999;
@@ -1421,7 +1429,7 @@ public class MyBot implements PirateBot {
         return save;
     }
 
-    
+    //get the cloest Island to Pirate
     private Island getCloestIsland(PirateGame game, Pirate p)
     {
         int x = 99999;
@@ -1436,6 +1444,7 @@ public class MyBot implements PirateBot {
         }
         return save;
     }
+    //get the Farest Island to Pirate
     private Island getFarIsland(PirateGame game, Pirate p)
     {
         int x = 0;
@@ -1452,7 +1461,7 @@ public class MyBot implements PirateBot {
     }
     
     
-    
+    //Make the Pirate ship to the closest Island
     private void handlePirates(PirateGame game, int ship) {
         // Go over all of my pirates
             Pirate p = game.getAllMyPirates().get(ship);
@@ -1467,7 +1476,7 @@ public class MyBot implements PirateBot {
             }
         
     }
-    
+    //Make the Pirate ship to the farest Island
     private void handlePirates(PirateGame game,boolean far, int ship) {
         // Go over all of my pirates
             Pirate p = game.getAllMyPirates().get(ship);
@@ -1487,7 +1496,7 @@ public class MyBot implements PirateBot {
         
     }
     
-    
+    //Make the Pirate ship to the choosen island
     private void handlePirates(PirateGame game, int ship, int isl) {
         // Go over all of my pirates
             Pirate p = game.getAllMyPirates().get(ship);
@@ -1503,7 +1512,7 @@ public class MyBot implements PirateBot {
             }
         
     }
-    
+    //Make the Pirate ship to the choosen island from the longest way he got
     private void handlePirates(PirateGame game, int ship, int isl,int x) {
         // Go over all of my pirates
             Pirate p = game.getAllMyPirates().get(ship);
@@ -1518,7 +1527,7 @@ public class MyBot implements PirateBot {
             }
         
     }
-    
+    //Make the Pirate ship to Enemy/Our/Nautral City, Neutral City is the Main Choose
     private void handlePirates(PirateGame game, int ship, boolean My) {
         // Go over all of my pirates
         
@@ -1547,7 +1556,7 @@ public class MyBot implements PirateBot {
             }
         
     }
-    
+    //Make the Pirate ship to Enemy/Our/Nautral City, Neutral City is the Main Choose, in the longest way
     private void handlePirates(PirateGame game, int ship, boolean My, int x) {
         // Go over all of my pirates
         
@@ -1577,6 +1586,7 @@ public class MyBot implements PirateBot {
         
     }
     
+    //One of the handles i used on the Final, make the Pirate move to our city
     private void handlePiratesFinal(PirateGame game, int ship) {
         // Go over all of my pirates
         
@@ -1594,7 +1604,7 @@ public class MyBot implements PirateBot {
             }
         
     }
-    
+    //Make Pirate Sail to Drone
     private void handlePirates(PirateGame game, int ship,Drone d) {
         // Go over all of my pirates
         
@@ -1608,7 +1618,7 @@ public class MyBot implements PirateBot {
             }
         
     }
-    
+    //Make Pirate Sail to Drone from the Longest way
     private void handlePirates(PirateGame game, int ship,Drone d, int x) {
         // Go over all of my pirates
         
@@ -1623,6 +1633,7 @@ public class MyBot implements PirateBot {
         
     }
     
+    //Make Pirate Sail to specific Location
     private void handlePirates(PirateGame game, int ship,Location loc) {
         // Go over all of my pirates
         
@@ -1635,7 +1646,8 @@ public class MyBot implements PirateBot {
             }
         
     }
-    
+    //Forgot about this in the Final -.-
+    //Make Pirate Sail to City
     private void handlePirates(PirateGame game, int ship,City c) {
         // Go over all of my pirates
         
@@ -1648,7 +1660,7 @@ public class MyBot implements PirateBot {
             }
         
     }
-    
+    //Make Pirate Sail to City from the Longest way
     private void handlePirates(PirateGame game, int ship,City c,int x) {
         // Go over all of my pirates
         
@@ -1661,7 +1673,7 @@ public class MyBot implements PirateBot {
             }
         
     }
-    
+    //Specific handle for a specific bot
     private void handlePiratesMitz(PirateGame game, int ship,Location loc) {
         // Go over all of my pirates
         
@@ -1674,7 +1686,7 @@ public class MyBot implements PirateBot {
             }
         
     }
-    
+    //Make Pirate Sail to specific Location from the Longest way
     private void handlePirates(PirateGame game, int ship,Location loc,int x) {
         // Go over all of my pirates
         
@@ -1704,6 +1716,7 @@ public class MyBot implements PirateBot {
             }
         }
     }*/
+    //return the Cloest City to Drone
     private City closet(PirateGame game, Drone d)
     {
         int x = 99999;
@@ -1732,7 +1745,7 @@ public class MyBot implements PirateBot {
         }
         return close;
     }
-    
+    //return the Cloest Drone to the City
     private Drone defender(PirateGame game)
     {
         int x = 999999;
@@ -1766,64 +1779,42 @@ public class MyBot implements PirateBot {
     }
     
 
-    /**
-     * Gives orders to my drones
-     *
-     * @param game - the current game state
-     */
+
+    //Specific Drone Handler that helps to win Challanges
     private void handleDronesDvora(PirateGame game) {
-        // Go over all of my drones
         for (Drone drone : game.getMyLivingDrones()) {
-            // Choose a destination
             
             if(drone == game.getMyLivingDrones().get(0))
             {
                 Location save = new Location(15,5);
                 Mover.moveAircraft(drone, save, game); 
             }
-            /*else if(game.getEnemyLivingPirates().size() >1)
-            {
-                if(drone.distance(game.getEnemyLivingPirates().get(0)) < 7)
-                {
-                //Location save = new Location(game.getEnemyLivingPirates().get(0).location.row+5, game.getEnemyLivingPirates().get(0).location.col);
-                //Mover.moveAircraft(drone, save, game); 
-                //int f = game.getMyCities().size()-1;
-                    City destination = game.getMyCities().get(0);
-                    //Island destination = game.getAllIslands().get(0);
-                    // Send to destination game)
-			        Mover.moveAircraft(drone, destination, game);
-                }
-            }*/
             else
             {
-                //int f = game.getMyCities().size()-1;
                 City destination = game.getMyCities().get(0);
-                //Island destination = game.getAllIslands().get(0);
-                // Send to destination game)
 			    Mover.moveAircraft(drone, destination, game); 
             }
             
         }
     }
-    
+    //Specific Drone Handler that helps to win Challanges
     private void handleDronesArm(PirateGame game) {
-        // Go over all of my drones
+
         for (Drone drone : game.getMyLivingDrones()) {
-            // Choose a destination
+
             
-                //int f = game.getMyCities().size()-1;
+
                 City destination = game.getMyCities().get(0);
-                //Island destination = game.getAllIslands().get(0);
-                // Send to destination game)
+
 			    Mover.moveAircraftG(drone, destination, game); 
             
             
         }
     }
     
-    
+    //Specific Drone Handler that helps to win Challanges
     private void handleDronesArm2(PirateGame game) {
-        // Go over all of my drones
+
         City destination = null;
         for (Drone drone : game.getMyLivingDrones()) {
             if(game.getEnemyLivingPirates().size() >1)
@@ -1836,14 +1827,10 @@ public class MyBot implements PirateBot {
                          save = new Location(game.getAllEnemyPirates().get(10).location.row, game.getAllEnemyPirates().get(10).location.col+5);
                     }
                
-                //Mover.moveAircraft(drone, save, game); 
-                //int f = game.getMyCities().size()-1;
-                    //City destination = game.getMyCities().get(0);
-			        Mover.moveAircraft(drone, save, game);
+		     Mover.moveAircraft(drone, save, game);
                 }
                 else
                 {
-                //int f = game.getMyCities().size()-1;
                     if(game.getNeutralCities().size() >0)
                     {
                         destination = game.getNeutralCities().get(0);
@@ -1853,33 +1840,27 @@ public class MyBot implements PirateBot {
                         destination = game.getMyCities().get(0);
                     }
                     
-                
-                //Island destination = game.getAllIslands().get(0);
-                // Send to destination game)
-			    Mover.moveAircraft(drone, destination, game); 
+		    Mover.moveAircraft(drone, destination, game); 
                 }
             }
             
         }
     }
-    
+    //Specific Drone Handler that helps to win Challanges
     private void handleDronesGal(PirateGame game) {
-        // Go over all of my drones
+
         City destination = null;
         for (Drone drone : game.getMyLivingDrones()) {
             if(game.getEnemyLivingPirates().size() >1)
             {
                 if(drone.distance(game.getEnemyLivingPirates().get(0)) < 7)
                 {
-                Location save = new Location(game.getEnemyLivingPirates().get(0).location.row, game.getEnemyLivingPirates().get(0).location.col+5);
-                //Mover.moveAircraft(drone, save, game); 
-                //int f = game.getMyCities().size()-1;
-                    //City destination = game.getMyCities().get(0);
-			        Mover.moveAircraft(drone, save, game);
+                	Location save = new Location(game.getEnemyLivingPirates().get(0).location.row, game.getEnemyLivingPirates().get(0).location.col+5);
+
+			Mover.moveAircraft(drone, save, game);
                 }
                 else
                 {
-                //int f = game.getMyCities().size()-1;
                     if(game.getNeutralCities().size() >0)
                     {
                         destination = game.getNeutralCities().get(0);
@@ -1888,16 +1869,13 @@ public class MyBot implements PirateBot {
                     {
                         destination = game.getMyCities().get(0);
                     }
-                    
-                
-                //Island destination = game.getAllIslands().get(0);
-                // Send to destination game)
-			    Mover.moveAircraft(drone, destination, game); 
+		    Mover.moveAircraft(drone, destination, game); 
                 }
             }
             
         }
     }
+    //the Main handler for the Drones, make them move to the Closest City
     private void handleDrones(PirateGame game) {
         // Go over all of my drones
         for (Drone drone : game.getMyLivingDrones()) {
@@ -1917,7 +1895,7 @@ public class MyBot implements PirateBot {
 			Mover.moveAircraft(drone, destination, game);
         }
     }
-    
+    //the Main handler for the Drones, make them move to the Closest City, from the longest way
     private void handleDrones(PirateGame game, int x) {
         // Go over all of my drones
         for (Drone drone : game.getMyLivingDrones()) {
@@ -1932,12 +1910,10 @@ public class MyBot implements PirateBot {
                 destination=game.getMyCities().get(0);
             }*/
             destination = closet(game,drone);
-            //Island destination = game.getAllIslands().get(0);
-            // Send to destination game)
 			Mover.moveAircraftG(drone, destination, game);
         }
     }
-    
+    //the Final handler for the Drones, make them move to the Closest City
     private void handleDronesFinal(PirateGame game) {
         City destination;
         Enterprise destination1;
@@ -1971,7 +1947,6 @@ public class MyBot implements PirateBot {
             	Mover.moveAircraft(drone, destination, game);
             	
             }
-            //Island destination = game.getAllIslands().get(0);
         }
     }
     
